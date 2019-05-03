@@ -242,6 +242,7 @@ postgres:
 	#> \q
 
 mongodb:
+    # Added
 	sudo apt -y install mongodb
 
 couchdb:
