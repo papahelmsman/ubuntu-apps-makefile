@@ -5,6 +5,8 @@
 #
 # Installs multiple packages on Ubuntu 18.04 (Bionic Beaver)
 #
+# Author: Pavel Petrov <papahelmsman@gmail.com>
+#
 
 .PHONY: all preparations libs update upgrade fonts virtualbox vagrant graphics darktable networking google_chrome firefox_next slack archives media pandoc python_packs ruby_packs system harddisk docker ansible filesystem nodejs nginx mysql mysql-workbench postgres mongodb couchdb php memcached tools encfs_manager nautilus_extensions httpie esl_repo erlang elixir teamviwer xmind presentation idea_intellij
 
