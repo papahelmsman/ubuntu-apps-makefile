@@ -17,7 +17,7 @@ all:
 	make media pandoc
 	make python_packs ruby_packs
 	make graphics darktable
-	make networking google_chrome firefox_next httpie
+	make networking google_chrome httpie
 	make presentation
 	make archives system harddisk filesystem tools encfs_manager nautilus_extensions
 	make docker ansible virtualbox vagrant
@@ -85,25 +85,25 @@ ruby_packs:
 
 graphics:
 	# !!!!!!
-	sudo apt -y install gimp gimp-data gimp-plugin-registry gimp-data-extras geeqie graphviz libav-tools jpegoptim
+	sudo apt -y install gimp gimp-data gimp-plugin-registry gimp-data-extras geeqie graphviz jpegoptim
 
 darktable:
 	make update
 	sudo apt -y install darktable
 
 networking:
-	sudo apt -y install pidgin filezilla vinagre remmina chromium-browser pepperflashplugin-nonfree bmon hexchat samba ethtool sshuttle transmission-gtk
+	sudo apt -y install pidgin filezilla vinagre chromium-browser pepperflashplugin-nonfree bmon hexchat samba ethtool sshuttle
 
 google_chrome:
 	echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
 	wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 	make update
-	sudo apt -y install google-chrome-stable libappindicator1 libindicator7
+	sudo apt -y install google-chrome-stable libappindicator1
 
-firefox_next:
-	sudo add-apt-repository -y ppa:mozillateam/firefox-next
-	make update
-	sudo apt -y install firefox firefox-locale-en
+## firefox_next:
+## 	sudo add-apt-repository -y ppa:mozillateam/firefox-next
+## 	make update
+## 	sudo apt -y install firefox firefox-locale-en
 
 slack:
 	sudo apt -y install gvfs-bin libgnome-keyring0 gir1.2-gnomekeyring-1.0
@@ -113,29 +113,34 @@ slack:
 	rm -f slack-desktop-3.0.5-amd64.deb
 
 archives:
-	# !!!!!
-	sudo apt -y install unace p7zip p7zip-full p7zip-rar sharutils rar mpack arj
+	# Tested
+	sudo apt install unace p7zip p7zip-full p7zip-rar sharutils rar mpack arj
 
 java:
+	# Not Need - Java 8 Installed by Default
 	make update
 	sudo apt -y install openjdk-11-jdk
 
 system:
+	# Tested
 	make update
-	sudo apt -y install subversion rabbitvcs-nautilus network-manager-openvpn gparted gnome-disk-utility usb-creator-gtk traceroute cloc whois mssh inotify-tools openssh-server sqlite3 etckeeper stress ntp
+	sudo apt -y install subversion rabbitvcs-nautilus network-manager-openvpn gparted cloc mssh inotify-tools openssh-server ntp
+	sudo apt install traceroute whois sqlite3 etckeeper stress
 
 system:
-	# !!!!!
+	# Tested
 	#--- Fixing psyhon keyring problems
-	sudo apt -y install python-keyring python-gnomekeyring
+	sudo apt -y install python-keyring
 	#--- Raise inotify limit
 	echo "fs.inotify.max_user_watches = 524288" | sudo tee /etc/sysctl.d/60-inotify.conf
 	sudo service procps restart
 
 harddisk:
+	# Tested
 	sudo DEBIAN_FRONTEND=noninteractive apt -y install smartmontools nvme-cli smart-notifier #gsmartcontrol
 
 docker:
+	#
 	make update
 	sudo apt -y install docker.io
 	# sudo systemctl start docker
@@ -143,16 +148,23 @@ docker:
 	# docker --version
 
 ansible:
-	# sudo add-apt-repository -y ppa:ansible/ansible
-	# make update
+	# Not Tested
+	sudo add-apt-repository -y ppa:ansible/ansible
+	make update
 	sudo apt -y install ansible
+	# ansible --version
 
 virtualbox:
+	# Tested
 	make update
+	make upgrade
 	wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add -
-	wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
-
-	sudo apt -y install virtualbox
+    wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add -
+	sudo add-apt-repository "deb [arch=amd64] http://download.virtualbox.org/virtualbox/debian bionic contrib"
+	make update
+	sudo apt -y install virtualbox-6.0
+	# Install Virtualbox Extension Pack
+	# https://www.virtualbox.org/wiki/Downloads
 
 vagrant:
 	make update
