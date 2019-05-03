@@ -192,6 +192,7 @@ editors:
 	# sudo apt -y install retext
 
 notepadqq:
+	# Tested
 	sudo add-apt-repository -y ppa:notepadqq-team/notepadqq
 	make update
 	sudo apt -y install notepadqq
