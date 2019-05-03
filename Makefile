@@ -1,8 +1,6 @@
 #
 # Ubuntu 18.04 (Bionic Beaver)
-#
 # Basic packages
-#
 # Installs multiple packages on Ubuntu 18.04 (Bionic Beaver)
 #
 # Author: Pavel Petrov <papahelmsman@gmail.com>
