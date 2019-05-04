@@ -204,17 +204,16 @@ sublime_text:
 	sudo apt -y install sublime-text
 
 nodejs:
-	# Tested
+	## Tested
 	# curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
 	# sudo bash nodesource_setup.sh
 	curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 	sudo apt -y install nodejs
-	# nodejs -v
-	# npm -v
-	# sudo apt -y install build-essential
-	# Removing Node.js
-	# sudo apt purge nodejs
-	# sudo apt autoremove
+	## nodejs -v
+	## npm -v
+	## Removing Node.js
+	## sudo apt purge nodejs
+	## sudo apt autoremove
 
 nginx:
 	deb http://nginx.org/packages/mainline/ubuntu/ bionic nginx
