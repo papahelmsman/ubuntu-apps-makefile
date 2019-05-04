@@ -204,8 +204,10 @@ sublime_text:
 	sudo apt -y install sublime-text
 
 nodejs:
-	curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
-	sudo bash nodesource_setup.sh
+	# Tested
+	# curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+	# sudo bash nodesource_setup.sh
+	curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 	sudo apt -y install nodejs
 	# nodejs -v
 	# npm -v
