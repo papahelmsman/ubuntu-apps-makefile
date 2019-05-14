@@ -1,5 +1,5 @@
 #
-# Ubuntu 18.04 (Bionic Beaver)
+# Ubuntu 18.04 LTS (Bionic Beaver)
 # Basic packages
 # Installs multiple packages on Ubuntu 18.04 (Bionic Beaver)
 #
@@ -234,8 +234,38 @@ mysql-workbench:
 	# sudo apt -y install mysql-workbench-community libmysqlclient18
 
 postgres:
-	sudo apt -y install postgresql postgresql-contrib pgadmin3
-	#sudo -i -u postgres psql
+	## UNINSTALL
+	## Step 1: List the PostgreSQL Packages
+	# dpkg -l | grep postgres
+	## Step 2: Delete the PostgreSQL Packages
+	# sudo apt-get --purge autoremove postgresql*
+
+	make update
+
+	wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+
+	RELEASE=$(lsb_release -cs)
+    echo "deb http://apt.postgresql.org/pub/repos/apt/ ${RELEASE}"-pgdg main | sudo tee  /etc/apt/sources.list.d/pgdg.list
+
+	# cat /etc/apt/sources.list.d/pgdg.list
+
+	make update
+
+	sudo apt -y install postgresql-11
+	## Set password for Linux user (postgres)
+	# sudo passwd postgres
+	## Accessing PostgreSQL
+	# sudo su -l postgres
+
+	sudo ss -tunelp | grep 5432
+    tcp   LISTEN  0  128  127.0.0.1:5432         0.0.0.0:*      users:(("postgres",pid=15785,fd=3)) uid:111 ino:42331 sk:6 <->
+
+	sudo nano /etc/postgresql/11/main/postgresql.conf
+
+	## sudo apt -y install postgresql postgresql-contrib pgadmin3
+	## sudo usermod -aG sudo postgres
+	## passwd postgres
+	# sudo -i -u postgres psql
 	#> \password postgres
 	#> postgres
 	#> postgres
@@ -330,3 +360,11 @@ jetbrains:
 	make update
 	# CLion - IDE for C and C++
 sudo snap install clion --classic
+
+
+python3:
+	make update
+	# sudo apt install software-properties-common
+	sudo add-apt-repository ppa:deadsnakes/ppa
+	# ENTER
+	sudo apt install python3.7
