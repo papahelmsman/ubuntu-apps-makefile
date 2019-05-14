@@ -6,7 +6,7 @@ Ubuntu 18.04 Bionic Beaver - My standard installation package
 
 ~~~~
 sudo apt -y install git make ; 
-git clone https://github.com/papahelmsman/ubuntu-apps-makefile.git ; 
-cd ubuntu-apps-makefile ; 
+git clone https://github.com/papahelmsman/ubuntu-desktop-packs-makefile.git ; 
+cd ubuntu-desktop-packs-makefile ; 
 make
 ~~~~
